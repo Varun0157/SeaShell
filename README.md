@@ -10,6 +10,10 @@ make
 ```bash
 ./a.out
 ```
+- You may clean the executable and temporary files, using:
+```bash
+make clean
+```
 ___
 ___
 # Contents
@@ -21,18 +25,21 @@ ___
 * ### [Limitations](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#limitations-1)
 ___
 ___
+# The Unique Factor
+If nothing else is read, read this. 
+- All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value withing strings, has strings omitted and is re-embedded into the string to be treated on it's own. 
+- All commands are stored in the format:
+
+    `command args "< inputRedir" "> outputRedir" | ...`
+    
+    Thus, even if different commands have the same action with respect to redirection, they are stored equivalently. 
+    So: `echo   "hello" >   a.txt` and `echo>a.txt hello` are stored as one and the same in pastevents. 
+Both of the above points were an attempt to solve Q90 in the doubts document, which we were told not to solve due to the implementational burden. But, I thought it would improve my shell so I went ahead and did it. 
+___
+___
 # Features
 The Shell prompt displays the username, the hostname, the current directory relative to the executable, as well as the time taken by the last command to execute, it it took more than 2 seconds.
 If there is a background process that has not explcitly exited yet, a * is shown at the beginning of this prompt, similar to the starship shell. 
-___
-### exit
-We can use the command exit with any arguments to provde a clean exit to the shell. Using this command ensures that:
-- Any background processes started by the shell are killed
-- All memory dynamically allocated is freed. 
-
-```bash
-exit
-```
 ___
 ### Neonate
 Has one optional `-n` flag that must be followed by an integer representing time in seconds. If no time is specified, it is taken as 1 second by default. 
@@ -213,6 +220,14 @@ Note that the `-d` and `-f` flags are ineffective together.
 - Files are coloured in green in the results while directories are blue. 
 - Other file types, including devices, pipes, sym-links, sockets, etc. are not considered in seek. 
 ___
+### exit
+We can use the command exit with any arguments to provde a clean exit to the shell. Using this command ensures that:
+- Any background processes started by the shell are killed
+- All memory dynamically allocated is freed. 
+
+```bash
+exit
+```
 ___
 
 # Assumptions
@@ -254,22 +269,7 @@ ___
 ___
 # Limitations
 - Tokenising the input always leads to limitations. Eg: we cannot directly navigate to a file that has spaces in it's name because our shell will assume that two arguments were passed to navigate to. Also, it leads to improper echo outputs when echo contains a strict string which has delimiters within it. 
-- Custom commands do not separate background execution, and the character & is intentionally treated purely as & and not as a special character denoting background execution for them. 
-- Single quote structures not adequately accounted for, although double quote structures are.
-- The same command in a different form may be misinterpreted. This is mentioned in detail below. 
+- Custom commands do not support background execution, and the character & is intentionally treated purely as & and not as a special character denoting background execution for them. 
+- Single quote structures not adequately accounted for, although double quote structures are. 
 ___
 ___
-# The Unique Factor
-If nothing else is read, read this. 
-- All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value withing strings, has strings omitted and is re-embedded into the string to be treated on it's own. 
-- All commands are stored in the format:
-
-    `command args "< inputRedir" "> outputRedir" | ...`
-    
-    Thus, even if different commands have the same action with respect to redirection, they are stored equivalently. 
-    So: `echo   "hello" > a.txt` and `echo>a.txt hello` are stored as one and the same in pastevents. 
-Both of the above points were an attempt to solve Q90 in the doubts document, which we were told not to solve due to the implementational burden. But, I thought it would improve my shell so I went ahead and did it. 
-#### The Consequence
-- Commands that are dependent on strings do not execute properly from `pastevents execute <index>` because it is stored in pastevents without the strings for the above reason. 
-    `echo "hello world" | sed "s/ //g"` is stored as `echo hello world | sed s/ //g`.
-But, I do not believe that this is a penalisable consequence, because even handling strings was not a requirement in the shell, so commands like this are not expected to run anyway. Thus, `pastevents execute <index>` may not work in this specific case. 
