@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 bool redirect(char* args[], int* numArgs) {
   bool runInBackground = false;

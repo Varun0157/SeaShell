@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 #define MAX_RESPONSE_LENGTH ((int)1e6)
 
@@ -137,16 +137,14 @@ void iMan(char* args[], int argsCount) {
   int endIndex = strlen(response);
   int lastDoubleNewLine = strlen(response);
   int offset = startIndex;
-  while((offset < endIndex) && (strLoc = strstr(response + offset, "\n\n"))){
+  while ((offset < endIndex) && (strLoc = strstr(response + offset, "\n\n"))) {
     lastDoubleNewLine = strLoc - response;
     offset = lastDoubleNewLine + 1;
   }
 
-  if(lastDoubleNewLine > startIndex){
-      endIndex = lastDoubleNewLine;
+  if (lastDoubleNewLine > startIndex) {
+    endIndex = lastDoubleNewLine;
   }
-
-
 
   // /*
   // To find end index:
@@ -176,7 +174,8 @@ void iMan(char* args[], int argsCount) {
   //                             "copyright"};
   // int numMatches = 21;
   // for(int i = 0; i < numMatches; i++){
-  //   if((strLoc = strstr(response, potentialMatches[i])) && (strLoc - response > startIndex)){
+  //   if((strLoc = strstr(response, potentialMatches[i])) && (strLoc - response >
+  //   startIndex)){
   //     endIndex = strLoc - response;
   //     break;
   //   }

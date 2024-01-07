@@ -5,7 +5,7 @@ https://stackoverflow.com/questions/19439855/implicit-declaration-of-scandir-alp
 */
 #define _GNU_SOURCE
 
-#include "headers.h"
+#include "../utils/headers.h"
 
 void peek(char* args[], int argsCount) {
   char* pathArg = NULL;

@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 int compareProcesses(const void* a, const void* b) {
   return ((processDetails*)a)->pid - ((processDetails*)b)->pid;

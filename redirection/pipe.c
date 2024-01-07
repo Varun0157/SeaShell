@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 bool isolatePipes(char* args[], int* argsCount) {
   for (int i = 0; i < *argsCount; i++) {

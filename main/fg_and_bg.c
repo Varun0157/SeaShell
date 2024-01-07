@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 void bringToFG(char* args[], int argsCount) {
   if (argsCount != 2) {

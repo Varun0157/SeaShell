@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 void proclore(char* args[], int argsCount) {
   int PID;

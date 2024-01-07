@@ -1,4 +1,4 @@
-#include "headers.h"
+#include "../utils/headers.h"
 
 char* CWD = NULL;
 char* OLD_PWD = NULL;
