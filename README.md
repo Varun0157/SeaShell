@@ -31,6 +31,8 @@ __
     Thus, even if different commands have the same action with respect to redirection, they are stored equivalently. 
     So: `echo   "hello" >   a.txt` and `echo>a.txt hello` are stored as one and the same in pastevents. 
 Both of the above points were an attempt to solve a question in the doubts document, which we were told not to solve due to the implementational burden. But, I thought it would improve my shell so I went ahead and did it. 
+
+Read more improvements on requirements [here](https://github.com/Varun0157/SeaShell#improvements-on-requirements-1). 
 ___
 ___
 # Features
@@ -236,11 +238,11 @@ ___
 - pastevents stores a uniformly formatted equivalent version of the passed command. This allows for various improvements. For example `sleep    "5"` is treated equivalent to `sleep 5`. 
 - warp and seek change the working directory even in the middle of commands. Consequently, commands like `seek -e -d newfolder ./doe ; peek -al ;` would peek the new directory entered by seek, if any. 
 - Large multi-command calls can be executed by `pastevents execute <index>`. This acts as a standalone function, meaning redirects lead to the output of all the commands in this call being redirected, and same for input. 
-- Multiple PIDs can be passed as input in proclore. 
-- Any types of flags allowed in peek, seek etc. We can enter any permutation of valid flags, and get verbose errors in case of disallowed ones. You can pass -allaalll as a valid flag in peek. 
 - System commands are allowed to take input and provide output without breaking both parent and child processes, using signals. 
 - exit command
 - If a pipeline is terminated by an ampersand (&), the last command in the pipeline is executed in the background. 
+- Multiple PIDs can be passed as input in proclore. 
+- Any types of flags allowed in peek, seek etc. We can enter any permutation of valid flags, and get verbose errors in case of disallowed ones. You can pass -allaalll as a valid flag in peek. 
 - Continous pipes are somewhat undefined in bash. If the continous pipes are separated by a space, bash throws an error. 
     - To improve on this functionality, we execute continuous pipes if they are separated by a space, treating this space as a 'void' that executes nothing. This can allow us to add commands that are not dependent on previous stages of the pipeline, to it.  
 ___
