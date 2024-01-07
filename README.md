@@ -56,6 +56,7 @@ ping <pid> <signal_number>
 ```
 Sends the signal `signal_number` (%32) to the process `pid`. 
 
+Additionally, the following signals have been overriden:
 - `Ctrl+C` - interrupts any currently running foreground process by sending it the SIGINT signal. It has no such effect if no foreground process is currently running. In this case, it simply re-prompts with the same session as before (i.e., without handling background processes). 
 - `Ctrl+D` - Logs out of the shell (after killing all processes) while having no effect on the actual terminal that the custom shell is running on. Stored as "exit" in pastevents. It only has effect while taking input.
 - `Ctrl+Z` - Pushes the running foreground process to the background and changes its state to "Stopped". It has no such effect on the shell if no foreground process is running. In this case, it simply re-prompts with the same session as before (i.e., without handling background processes). 
@@ -224,6 +225,7 @@ We can use the command exit with any arguments to provde a clean exit to the she
 ```bash
 exit
 ```
+Ctrl+D also provides a clean exit. 
 ___
 ___
 # Improvements on Requirements
@@ -245,8 +247,6 @@ ___
 ___
 
 # Assumptions 
-- In seek, anything that passes `S_ISDIR` is a directory, anything that passes `S_ISREG` is a file. 
-- In peek, however, anything that passes `S_ISDIR` is a directory, anything that has execute permissions from the owner is an executable, and everything else is a file. 
 - Only double quote structures are supported for relevant commands. Eg: echo "random    word" will print as expected from the bash terminal, but 'random    word' may not.  
 - Redirection of files when used with relative paths is not relative to the shell executable. ~ will act as the home directory of the shell only for seek, peek and warp. 
 - Operating on special files (eg: `sort < /dev/zero`) can lead to undefined behaviour. 
@@ -255,6 +255,5 @@ ___
 # Limitations
 - Tokenising the input always leads to limitations. Eg: we cannot directly navigate to a file that has spaces in it's name because our shell will assume that two arguments were passed to navigate to. Also, it leads to improper echo outputs when echo contains a strict string which has delimiters within it. 
 - Custom commands do not support background execution, and the character & is intentionally treated purely as & and not as a special character denoting background execution for them. 
-- Single quote structures not adequately accounted for, although double quote structures are. 
 ___
 ___
