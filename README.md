@@ -23,15 +23,14 @@ ___
 ___
 __
 # The Unique Factor
-If nothing else is read, read this. 
-- All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value withing strings, has strings omitted and is re-embedded into the string to be treated on it's own. 
+- All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value within strings, has its strings omitted and is re-embedded into the string to be treated on it's own. 
 - All commands are stored in the format:
 
     `command args "< inputRedir" "> outputRedir" | ...`
     
     Thus, even if different commands have the same action with respect to redirection, they are stored equivalently. 
     So: `echo   "hello" >   a.txt` and `echo>a.txt hello` are stored as one and the same in pastevents. 
-Both of the above points were an attempt to solve Q90 in the doubts document, which we were told not to solve due to the implementational burden. But, I thought it would improve my shell so I went ahead and did it. 
+Both of the above points were an attempt to solve a question in the doubts document, which we were told not to solve due to the implementational burden. But, I thought it would improve my shell so I went ahead and did it. 
 ___
 ___
 # Features
@@ -226,42 +225,31 @@ We can use the command exit with any arguments to provde a clean exit to the she
 exit
 ```
 ___
-
-# Assumptions
-- Based on Q38 in the Doubts Document, I assumed that I can colour the entire line of data of each item in the required format, not necessarily just the name. 
-- Time is shown if the previous ENTIRE command takes more than 2 seconds to execute, whether background or foreground, whether system command or custom one.
-- Displaying username as "username" by default, i.e., if username is not found 
-- seek searches strictly for prefix. This means even newFolderFile will match on seeking newFolder. This is based on the wording of answer 75. 
-- Apart from ~ and - directories, we pass the argument directly to chdir, which handles it. Thus, warp / would take us back to the root. Same with peek, seek etc. 
-- In seek, anything that passes `S_ISDIR` is a directory, anything that passes `S_ISREG` is a file. 
-- In peek, however, anything that passes `S_ISDIR` is a directory, anything that has execute permissions from the owner is an executable, and everything else is a file. 
-- peek has no support for `-`, similar to ls, and neither does seek. We can only warp to the previous working directory, and not read it or perform similar operations.  
-- Only double quote structures are supported for relevant commands. Eg: echo "random    word" will print as expected from the bash terminal, but 'random    word' may not. 
-- Ctrl+D signal is only handled on receiving input.
-- sleep, gedit and more go to the `S` (sleeping) state on executing them as a background process, so instead of only displaying running and stopped in `activities`, I am displaying all background processes that are active, in whatever state they are in, whether stopped, running, sleeping, or otherwise. 
-- `<<` is treated as an attempt to perform `<` on `<`, and will inevitably lead to unintended output. A warning is provided in the execution for this too. 
-- Background processes only store command name and not arguments made. This is what acttivities displays. 
-- Redirection of files when used with relative paths is not relative to the shell executable. ~ will act as the home directory of the shell only for seek, peek and warp. 
-- Operating on special files (eg: `sort < /dev/zero`) can lead to undefined behaviour. 
-- iMan works by searching for name to set the start-index, and to set the end-index, it will find the last "\n\n" in the string, so as to eliminate the footer. 
-___
 ___
 # Improvements on Requirements
 - Complex string input with double quotes is allowed and accounted for, similar to bash. 
     - `echo "random word > a.txt"` is valid and echoes `random word > a.txt` without any redirection, as is `echo "random word" | wc | echo "random word | wc"`, and it will give the same output as bash. 
     - Even regular system commands work similar to bash. echo random"word" prints randomword, same as bash. 
-    - Please read [this](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#the-unique-factor-1)
-- pastevents stores a uniformly formatted equivalent version of the passed command. This allows for various improvements. For example sleep\t5 is treated equivalent to sleep 5. 
+    - Please read [this](https://github.com/Varun0157/SeaShell#the-unique-factor-1)
+- pastevents stores a uniformly formatted equivalent version of the passed command. This allows for various improvements. For example `sleep    "5"` is treated equivalent to `sleep 5`. 
 - warp and seek change the working directory even in the middle of commands. Consequently, commands like `seek -e -d newfolder ./doe ; peek -al ;` would peek the new directory entered by seek, if any. 
 - Large multi-command calls can be executed by `pastevents execute <index>`. This acts as a standalone function, meaning redirects lead to the output of all the commands in this call being redirected, and same for input. 
 - Multiple PIDs can be passed as input in proclore. 
 - Any types of flags allowed in peek, seek etc. We can enter any permutation of valid flags, and get verbose errors in case of disallowed ones. You can pass -allaalll as a valid flag in peek. 
 - System commands are allowed to take input and provide output without breaking both parent and child processes, using signals. 
 - exit command
-- I/O redirection supports background execution. In piping, the last command can be executed in the background.
 - If a pipeline is terminated by an ampersand (&), the last command in the pipeline is executed in the background. 
 - Continous pipes are somewhat undefined in bash. If the continous pipes are separated by a space, bash throws an error. 
     - To improve on this functionality, we execute continuous pipes if they are separated by a space, treating this space as a 'void' that executes nothing. This can allow us to add commands that are not dependent on previous stages of the pipeline, to it.  
+___
+___
+
+# Assumptions 
+- In seek, anything that passes `S_ISDIR` is a directory, anything that passes `S_ISREG` is a file. 
+- In peek, however, anything that passes `S_ISDIR` is a directory, anything that has execute permissions from the owner is an executable, and everything else is a file. 
+- Only double quote structures are supported for relevant commands. Eg: echo "random    word" will print as expected from the bash terminal, but 'random    word' may not.  
+- Redirection of files when used with relative paths is not relative to the shell executable. ~ will act as the home directory of the shell only for seek, peek and warp. 
+- Operating on special files (eg: `sort < /dev/zero`) can lead to undefined behaviour. 
 ___
 ___
 # Limitations
