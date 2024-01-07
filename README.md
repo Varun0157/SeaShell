@@ -21,7 +21,7 @@ ___
 * ### [Assumptions](https://github.com/Varun0157/SeaShell#assumptions-1)
 * ### [Limitations](https://github.com/Varun0157/SeaShell#limitations-1)
 ___
-__
+___
 # The Unique Factor
 - All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value within strings, has its strings omitted and is re-embedded into the string to be treated on it's own. 
 - All commands are stored in the format:
@@ -252,6 +252,7 @@ ___
 - Only double quote structures are supported for relevant commands. Eg: echo "random    word" will print as expected from the bash terminal, but 'random    word' may not.  
 - Redirection of files when used with relative paths is not relative to the shell executable. ~ will act as the home directory of the shell only for seek, peek and warp. 
 - Operating on special files (eg: `sort < /dev/zero`) can lead to undefined behaviour. 
+- We need write permissions
 ___
 ___
 # Limitations

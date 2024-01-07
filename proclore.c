@@ -16,6 +16,7 @@ void proclore(char* args[], int argsCount) {
       free(pidString);
 
       getDetails(PID);
+      if (argsCount > 2 && (i + 1 != argsCount)) printf("\n");
     }
   } else {
     PID = getpid();
