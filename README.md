@@ -1,6 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/76mHqLr5)
-___
-___
 # Using the Shell
 1. Create the executable by entering the following command in your terminal
 ```bash
@@ -17,14 +14,14 @@ make clean
 ___
 ___
 # Contents
-* ### [Assumptions](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#assumptions-1)
-* ### [Improvements on Requirements](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#improvements-on-requirements-1)
-* ### [The Unique Factor](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#the-unique-factor-1)
-* ### [Features](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#features-1)
-#### [exit](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#exit) | [neonate](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#neonate) | [signals](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#signals) |  [fg and bg](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#fg-and-bg) | [iMan](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#iman) | [Multi-Command Structures](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#multi-command-structures) | [I/O Redirection](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#io-redirection) | [Piping](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#piping) | [activities](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#activities) |[warp](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#warp) | [peek](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#peek) | [pastevents](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#pastevents) | [System Commands](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#system-commands) | [proclore](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#proclore) | [seek](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#seek)
-* ### [Limitations](https://github.com/serc-courses/mini-project-1-Varun0157/tree/final#limitations-1)
+* ### [The Unique Factor](https://github.com/Varun0157/SeaShell#the-unique-factor-1)
+* ### [Features](https://github.com/Varun0157/SeaShell#features-1)
+#### [exit](https://github.com/Varun0157/SeaShell#exit) | [neonate](https://github.com/Varun0157/SeaShell#signals) | [signals](https://github.com/Varun0157/SeaShell#signals) |  [fg and bg](https://github.com/Varun0157/SeaShell#fg-and-bg) | [iMan](https://github.com/Varun0157/SeaShell#iman) | [Multi-Command Structures](https://github.com/Varun0157/SeaShell#multi-command-structures) | [I/O Redirection](https://github.com/Varun0157/SeaShell#io-redirection) | [Piping](https://github.com/Varun0157/SeaShell#piping) | [activities](https://github.com/Varun0157/SeaShell#activities) |[warp](https://github.com/Varun0157/SeaShell#warp) | [peek](https://github.com/Varun0157/SeaShell#peek) | [pastevents](https://github.com/Varun0157/SeaShell#pastevents) | [System Commands](https://github.com/Varun0157/SeaShell#system-commands) | [proclore](https://github.com/Varun0157/SeaShell#proclore) | [seek](https://github.com/Varun0157/SeaShell#seek)
+* ### [Improvements on Requirements](https://github.com/Varun0157/SeaShell#improvements-on-requirements-1)
+* ### [Assumptions](https://github.com/Varun0157/SeaShell#assumptions-1)
+* ### [Limitations](https://github.com/Varun0157/SeaShell#limitations-1)
 ___
-___
+__
 # The Unique Factor
 If nothing else is read, read this. 
 - All commands are stored in a cleanly formatted, equivalent manner, performing similar pre-processing as bash for commands. Thus, any value withing strings, has strings omitted and is re-embedded into the string to be treated on it's own. 
